@@ -7,11 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Anton Kondrasev",
   "private": true,
   "license": "ISC",
   "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.16.0",
-    "webpack-server": "^0.1.2"
+    "webpack-dev-server": "^3.1.4"
   }
 }
