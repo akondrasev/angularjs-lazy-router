@@ -7,6 +7,7 @@ import("./vendor").then((vendor) => {
     const ngModule = angular.module("app", [
         angularMaterial, angularMessages, uiRouter
     ]);
+
     const injector = angular.bootstrap(document, [ngModule.name]);
     const $rootScope = injector.get("$rootScope");
     const $compile = injector.get("$compile");

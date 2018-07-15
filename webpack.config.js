@@ -6,7 +6,7 @@ let buildFolder = "dist";
 
 module.exports = {
     mode: "development",
-    // devtool: 'source-map',
+    devtool: false,
     watch: true,
 
     entry: {
@@ -32,22 +32,8 @@ module.exports = {
         }]
     },
 
-    // optimization: {
-    //   splitChunks: {
-    //     chunks: "all",
-    //     cacheGroups: {
-    //       commons: {
-    //         test: "/node_modules/",
-    //         name: 'vendors',
-    //         chunks: 'all',
-    //         minSize: 1
-    //       }
-    //     }
-    //   }
-    // },
-
     plugins: [
-        // new CleanWebpackPlugin([buildFolder]),
+        new CleanWebpackPlugin([`${buildFolder}/*.*`]),
 
         new HtmlWebpackPlugin({
             template: "./src/index.html",
