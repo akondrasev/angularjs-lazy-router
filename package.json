@@ -22,6 +22,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.18",
     "angular": "^1.7.2",
     "angular-animate": "^1.7.2",
     "angular-aria": "^1.7.2",
