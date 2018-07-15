@@ -17,6 +17,19 @@ module.exports = {
       path: path.resolve(__dirname, buildFolder)
   },
 
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
+    }, {
+      test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+      use: ['file-loader']
+    }, {
+      test: /\.html$/,
+      use: ['raw-loader']
+    }]
+  },
+
   // optimization: {
   //   splitChunks: {
   //     chunks: "all",
