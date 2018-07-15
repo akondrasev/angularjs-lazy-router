@@ -7,4 +7,4 @@ import uiRouter from '@uirouter/angularjs';
 
 import 'angular-material/angular-material.css';
 
-export {angular, angularMaterial, angularMessages, uiRouter};
+export {angular, angularMaterial, angularMessages, uiRouter, angularAnimate, angularAria};

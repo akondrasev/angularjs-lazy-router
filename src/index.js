@@ -3,9 +3,11 @@ import("./vendor").then((vendor) => {
     const angularMaterial = vendor.angularMaterial;
     const angularMessages = vendor.angularMessages;
     const uiRouter = vendor.uiRouter;
+    const angularAnimate = vendor.angularAnimate;
+    const angularAria = vendor.angularAria;
 
     const ngModule = angular.module("app", [
-        angularMaterial, angularMessages, uiRouter
+        angularMaterial, angularMessages, uiRouter, angularAnimate, angularAria
     ]);
 
     const injector = angular.bootstrap(document, [ngModule.name]);
