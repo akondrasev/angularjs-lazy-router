@@ -1,6 +1,11 @@
 <div class="app">
+    <div ng-if="$root.loading">
+        Loading...
+    </div>
+
     <md-button ui-sref="root.login" class="md-raised md-accent">Login</md-button>
     <md-button ui-sref="root.error" class="md-raised md-accent">Error page</md-button>
+    <md-button ui-sref="root" class="md-raised md-accent">Root</md-button>
 
     <ui-view></ui-view>
 </div>

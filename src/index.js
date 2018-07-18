@@ -32,6 +32,21 @@ import("./vendor").then((vendor) => {
         $urlRouterProvider.otherwise("/error");
     }]);
 
+    ngModule.run(["$transitions", "$rootScope", function ($transitions, $rootScope) {
+        console.log($transitions);
+        $transitions.onCreate({}, function ($transition) {
+            if ($transition.$from() === $transition.$to()) {
+                return;
+            }
+
+            $rootScope.loading = true;
+
+            $transition.onFinish({}, function () {
+                $rootScope.loading = false;
+            });
+        });
+    }]);
+
     const injector = angular.bootstrap(document, [ngModule.name]);
 
     // const $rootScope = injector.get("$rootScope");
