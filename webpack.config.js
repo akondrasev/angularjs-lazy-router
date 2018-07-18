@@ -6,7 +6,7 @@ let buildFolder = "dist";
 
 module.exports = {
     mode: "development",
-    devtool: false,
+    devtool: "source-map",
     watch: true,
 
     entry: {

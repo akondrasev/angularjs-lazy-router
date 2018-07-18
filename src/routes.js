@@ -1,7 +1,21 @@
 export default {
+    root: {
+        name: "root",
+        url: "/",
+        component: "appComponent",
+        lazyLoad: function(transition, state) {
+            return new Promise(function (resolve) {
+                import("./app/app.component").then((appComponent) => {
+                    transition.injector().native.loadNewModules([appComponent.default]);
+                    resolve();
+                });
+            });
+        }
+    },
+
     login: {
-        name: "login",
-        url: "/login",
+        name: "root.login",
+        url: "login",
         component: "loginComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
@@ -14,8 +28,8 @@ export default {
     },
 
     error: {
-        name: "error",
-        url: "/error",
+        name: "root.error",
+        url: "error",
         component: "errorComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
