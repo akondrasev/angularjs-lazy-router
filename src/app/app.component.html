@@ -3,9 +3,22 @@
         <md-progress-linear md-mode="indeterminate"></md-progress-linear>
     </div>
 
-    <md-button ui-sref="root.login" class="md-raised md-accent">Login</md-button>
-    <md-button ui-sref="root.error" class="md-raised md-accent">Error page</md-button>
-    <md-button ui-sref="root" class="md-raised md-accent">Root</md-button>
+    <md-nav-bar
+            md-no-ink-bar="disableInkBar"
+            md-selected-nav-item="$root.currentState"
+            nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-sref="root" name="root">
+            Root
+        </md-nav-item>
+
+        <md-nav-item md-nav-sref="root.login" name="root.login">
+            Login
+        </md-nav-item>
+
+        <md-nav-item md-nav-sref="root.error" name="root.error">
+            Error Page
+        </md-nav-item>
+    </md-nav-bar>
 
     <ui-view></ui-view>
 </div>

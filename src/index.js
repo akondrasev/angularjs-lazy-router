@@ -45,6 +45,7 @@ import("./vendor").then((vendor) => {
 
             $transition.onFinish({}, function () {
                 $rootScope.loading = false;
+                $rootScope.currentState = $transition.$to().name;
             });
         });
 
