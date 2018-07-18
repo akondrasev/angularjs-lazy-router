@@ -20,20 +20,20 @@ module.exports = {
         path: path.resolve(__dirname, buildFolder)
     },
 
-    optimization: {
-        splitChunks: {
-            chunks: "all",
-            minSize: 0,
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'all',
-                    minSize: 0
-                }
-            }
-        }
-    },
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: "all",
+    //         minSize: 0,
+    //         cacheGroups: {
+    //             commons: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 name: 'vendors',
+    //                 chunks: 'all',
+    //                 minSize: 0
+    //             }
+    //         }
+    //     }
+    // },
 
     module: {
         rules: [{
@@ -54,7 +54,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/index.html",
             inject: 'body',
-            hash: true
+            hash: false
         })
     ]
 };

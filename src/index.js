@@ -1,4 +1,7 @@
 import routes from './routes';
+import './styles.css';
+
+const bodyElement = document.getElementsByTagName("body")[0];
 
 import("./vendor").then((vendor) => {
     const angular = vendor.angular;
@@ -44,6 +47,8 @@ import("./vendor").then((vendor) => {
                 $rootScope.loading = false;
             });
         });
+
+        bodyElement.classList.remove("loading");
     }]);
 
     const injector = angular.bootstrap(document, [ngModule.name]);
