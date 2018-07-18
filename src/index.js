@@ -33,7 +33,6 @@ import("./vendor").then((vendor) => {
     }]);
 
     ngModule.run(["$transitions", "$rootScope", function ($transitions, $rootScope) {
-        console.log($transitions);
         $transitions.onCreate({}, function ($transition) {
             if ($transition.$from() === $transition.$to()) {
                 return;
@@ -48,20 +47,4 @@ import("./vendor").then((vendor) => {
     }]);
 
     const injector = angular.bootstrap(document, [ngModule.name]);
-
-    // const $rootScope = injector.get("$rootScope");
-    // const $compile = injector.get("$compile");
-
-    // import("./app/app.component").then((appModule) => {
-    //     injector.loadNewModules([appModule.default]);
-    //
-    //     const appComponentElement = document.createElement("app-component");
-    //     const bodyElement = document.getElementsByTagName("body")[0];
-    //
-    //     bodyElement.appendChild(appComponentElement);
-    //
-    //     $rootScope.$apply(function () {
-    //         $compile(appComponentElement)($rootScope);
-    //     });
-    // });
 });
