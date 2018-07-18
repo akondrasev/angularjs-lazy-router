@@ -1,3 +1,39 @@
-<div class="login">
-    LOGIN
+<div class="login" layout="row" layout-align="center center" ng-cloak>
+    <md-content layout-padding>
+        <form name="loginForm">
+            <md-input-container class="md-block">
+                <label>Email</label>
+                <input required
+                       type="email"
+                       name="email"
+                       ng-model="$ctrl.email"
+                       minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+
+                <div ng-messages="loginForm.email.$error" role="alert">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                        Your email must be between 10 and 100 characters long and look like an e-mail address.
+                    </div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Password</label>
+                <input required
+                       type="password"
+                       name="password"
+                       ng-model="$ctrl.password"
+                       minlength="1" maxlength="100" />
+
+                <div ng-messages="loginForm.password.$error" role="alert">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                        Password is required
+                    </div>
+                </div>
+            </md-input-container>
+
+            <div>
+                <md-button class="md-raised md-primary" type="submit">Sign In</md-button>
+            </div>
+        </form>
+    </md-content>
 </div>
