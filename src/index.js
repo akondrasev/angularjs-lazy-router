@@ -36,6 +36,14 @@ import("./vendor").then((vendor) => {
     }]);
 
     ngModule.run(["$transitions", "$rootScope", function ($transitions, $rootScope) {
+        $rootScope.routes = [];
+
+        Object.keys(routes).forEach((key) => {
+            $rootScope.routes.push(routes[key]);
+        });
+
+        console.log($rootScope.routes);
+
         $transitions.onBefore({}, function ($transition) {
             if ($transition.$to().isSecured && !$rootScope.userData) {
                 $rootScope.currentState = $transition.$from().name;

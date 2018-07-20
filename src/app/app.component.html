@@ -7,16 +7,8 @@
             md-no-ink-bar="disableInkBar"
             md-selected-nav-item="$root.currentState"
             nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-sref="root" name="root">
-            Root
-        </md-nav-item>
-
-        <md-nav-item md-nav-sref="root.login" name="root.login" ng-disabled="$root.userData">
-            Login
-        </md-nav-item>
-
-        <md-nav-item md-nav-sref="root.error" name="root.error">
-            Error Page
+        <md-nav-item ng-repeat="route in $root.routes" md-nav-sref="{{route.name}}" name="{{route.name}}">
+            {{route.name}}
         </md-nav-item>
     </md-nav-bar>
 
