@@ -42,12 +42,11 @@ import("./vendor").then((vendor) => {
             $rootScope.routes.push(routes[key]);
         });
 
-        console.log($rootScope.routes);
-
         $transitions.onBefore({}, function ($transition) {
-            if ($transition.$to().isSecured && !$rootScope.userData) {
+            if ($transition.$to().name !== "root.login" && !$transition.$to().isSafe && !$rootScope.userData) {
                 $rootScope.currentState = $transition.$from().name;
                 $rootScope.loading = false;
+                $transition.router.stateService.transitionTo("root.login");
                 return false;
             }
         });

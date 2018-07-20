@@ -31,6 +31,7 @@ export default {
         name: "root.error",
         url: "error",
         component: "errorComponent",
+        isSafe: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
                 import("./app/components/error.component/error.component").then((errorComponent) => {
