@@ -5,8 +5,8 @@ export default {
         component: "appComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
-                import("./app/app.component").then((appComponent) => {
-                    transition.injector().native.loadNewModules([appComponent.default]);
+                import("./app/app.component").then((module) => {
+                    transition.injector().native.loadNewModules([module.default]);
                     resolve();
                 });
             });
@@ -19,8 +19,8 @@ export default {
         component: "loginComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
-                import("./app/components/login.component/login.component").then((loginComponent) => {
-                    transition.injector().native.loadNewModules([loginComponent.default]);
+                import("./app/components/login.component/login.component").then((module) => {
+                    transition.injector().native.loadNewModules([module.default]);
                     resolve();
                 });
             });
@@ -34,8 +34,22 @@ export default {
         isSafe: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
-                import("./app/components/error.component/error.component").then((errorComponent) => {
-                    transition.injector().native.loadNewModules([errorComponent.default]);
+                import("./app/components/error.component/error.component").then((module) => {
+                    transition.injector().native.loadNewModules([module.default]);
+                    resolve();
+                });
+            });
+        }
+    },
+
+    home: {
+        name: "root.home",
+        url: "home",
+        component: "homeComponent",
+        lazyLoad: function(transition, state) {
+            return new Promise(function (resolve) {
+                import("./app/components/home.component/home.component").then((module) => {
+                    transition.injector().native.loadNewModules([module.default]);
                     resolve();
                 });
             });
