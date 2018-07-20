@@ -7,7 +7,18 @@ import services from './services/services';
 const ngModule = angular.module("appComponent", [services]);
 
 ngModule.component("appComponent", {
-    template
+    template,
+    controller: ["authService", "$rootScope", "$state", function (authService, $rootScope, $state) {
+        this.logout = function () {
+            $rootScope.loading = true;
+            authService.logout().then(() => {
+                $rootScope.userData = null;
+                $state.go("root.login");
+            }).finally(() => {
+                $rootScope.loading = false;
+            });
+        };
+    }]
 });
 
 export default ngModule.name;

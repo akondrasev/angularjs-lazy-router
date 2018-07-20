@@ -20,5 +20,7 @@
         </md-nav-item>
     </md-nav-bar>
 
+    <md-button ng-if="$root.userData" class="md-primary md-raised" ng-click="$ctrl.logout();">Logout</md-button>
+
     <ui-view></ui-view>
 </div>

@@ -6,15 +6,28 @@ AuthService.$inject = ["$timeout", "$q"];
 
 function AuthService($timeout, $q) {
 
+    let userData = null;
+
     this.login = function (email, password) {
         return $q((resolve, reject) => {
             $timeout(() => {
-                resolve({
+                userData = {
                     email: email,
                     password: password,
                     permissions: [],
                     role: "admin"
-                });
+                };
+
+                resolve(userData);
+            }, 500);
+        });
+    };
+
+    this.logout = function () {
+        return $q((resolve, reject) => {
+            $timeout(() => {
+                userData = null;
+                resolve();
             }, 500);
         });
     };
