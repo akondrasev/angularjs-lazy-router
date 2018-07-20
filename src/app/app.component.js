@@ -2,7 +2,9 @@ import angular from 'angular';
 import template from './app.component.html';
 import './app.component.css';
 
-const ngModule = angular.module("appComponent", []);
+import services from './services/services';
+
+const ngModule = angular.module("appComponent", [services]);
 
 ngModule.component("appComponent", {
     template

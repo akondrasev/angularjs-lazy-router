@@ -1,6 +1,6 @@
 <div class="login" layout="row" layout-align="center center" ng-cloak>
     <md-content layout-padding>
-        <form name="loginForm">
+        <form name="loginForm" ng-submit="$ctrl.submit($ctrl.email, $ctrl.password);">
             <md-input-container class="md-block">
                 <label>Email</label>
                 <input required

@@ -20,10 +20,10 @@ import("./vendor").then((vendor) => {
     ]);
 
     ngModule.config(["$mdThemingProvider", "$compileProvider", "$stateProvider", "$urlRouterProvider", function ($mdThemingProvider, $compileProvider, $stateProvider, $urlRouterProvider) {
-        $mdThemingProvider
-            .theme('default')
-            .primaryPalette('pink')
-            .accentPalette('orange');
+        // $mdThemingProvider
+        //     .theme('default')
+        //     .primaryPalette('purple')
+        //     .accentPalette('red');
 
         $compileProvider.debugInfoEnabled(false);
 
@@ -36,6 +36,22 @@ import("./vendor").then((vendor) => {
     }]);
 
     ngModule.run(["$transitions", "$rootScope", function ($transitions, $rootScope) {
+        $transitions.onBefore({}, function ($transition) {
+            if ($transition.$to().isSecured && !$rootScope.userData) {
+                $rootScope.currentState = $transition.$from().name;
+                $rootScope.loading = false;
+                return false;
+            }
+        });
+
+        $transitions.onBefore({ to : "root.login"}, function ($transition) {
+            if ($rootScope.userData) {
+                $rootScope.currentState = $transition.$from().name;
+                $rootScope.loading = false;
+                return false;
+            }
+        });
+
         $transitions.onCreate({}, function ($transition) {
             if ($transition.$from() === $transition.$to()) {
                 return;
