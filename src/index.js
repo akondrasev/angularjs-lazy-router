@@ -45,6 +45,7 @@ import("./vendor").then((vendor) => {
             get: function () {
                 return loadingState;
             },
+
             set: function (value) {
                 if (loadingState === true && loadingState === value) {
                     loadingCounter++;
