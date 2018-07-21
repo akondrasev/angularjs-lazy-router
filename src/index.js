@@ -25,10 +25,10 @@ import("./vendor").then((vendor) => {
     ]);
 
     ngModule.config(["$mdThemingProvider", "$compileProvider", "$stateProvider", "$urlRouterProvider", function ($mdThemingProvider, $compileProvider, $stateProvider, $urlRouterProvider) {
-        // $mdThemingProvider
-        //     .theme('default')
-        //     .primaryPalette('purple')
-        //     .accentPalette('red');
+        $mdThemingProvider
+            .theme('default')
+            .primaryPalette('blue-grey')
+            .accentPalette('blue');
 
         $compileProvider.debugInfoEnabled(false);
 

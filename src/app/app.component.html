@@ -4,7 +4,6 @@
     </div>
 
     <md-nav-bar
-            md-no-ink-bar="disableInkBar"
             md-selected-nav-item="$root.currentState"
             nav-bar-aria-label="navigation links">
         <md-nav-item md-nav-sref="root.home" name="root.home">
@@ -17,6 +16,8 @@
     </md-nav-bar>
 
     <md-button class="md-primary md-raised" ng-click="$ctrl.logout();">Logout</md-button>
+    <md-button class="md-primary md-hue-1 md-raised" ng-click="$ctrl.logout();">Logout</md-button>
+    <md-button class="md-primary md-hue-2 md-raised" ng-click="$ctrl.logout();">Logout</md-button>
 
     <ui-view></ui-view>
 </div>
