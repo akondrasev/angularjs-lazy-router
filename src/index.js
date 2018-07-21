@@ -12,6 +12,9 @@ import("./vendor").then((vendor) => {
     const angularAria = vendor.angularAria;
     const authService = vendor.authService;
 
+    let loadingState = false;
+    let loadingCounter = 0;
+
     const ngModule = angular.module("app", [
         angularMaterial,
         angularMessages,
@@ -38,6 +41,25 @@ import("./vendor").then((vendor) => {
     }]);
 
     ngModule.run(["$transitions", "$rootScope", "authService", function ($transitions, $rootScope, authService) {
+        Object.defineProperty($rootScope, "loading", {
+            get: function () {
+                return loadingState;
+            },
+            set: function (value) {
+                if (loadingState === true && loadingState === value) {
+                    loadingCounter++;
+                    return;
+                }
+
+                if (loadingState === true && value === false && loadingCounter > 0) {
+                    loadingCounter--;
+                    return;
+                }
+
+                loadingState = value;
+            }
+        });
+
         $transitions.onBefore({to: "root.*"}, function ($transition) {
             if (!authService.getUserData()) {
                 $rootScope.currentState = $transition.$from().name;
@@ -63,8 +85,11 @@ import("./vendor").then((vendor) => {
 
             $rootScope.loading = true;
 
-            $transition.onFinish({}, function () {
+            $transition.promise.finally(() => {
                 $rootScope.loading = false;
+            }).catch((data) => {
+                console.log("transition error: ", data);
+            }).then(() => {
                 $rootScope.currentState = $transition.$to().name;
             });
         });
