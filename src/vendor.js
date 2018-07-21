@@ -4,7 +4,16 @@ import angularMessages from 'angular-messages';
 import angularAnimate from 'angular-animate';
 import angularAria from 'angular-aria';
 import uiRouter from '@uirouter/angularjs';
+import authService from './app/services/auth.service';
 
 import 'angular-material/angular-material.css';
 
-export {angular, angularMaterial, angularMessages, uiRouter, angularAnimate, angularAria};
+export {
+    angular,
+    angularMaterial,
+    angularMessages,
+    uiRouter,
+    angularAnimate,
+    angularAria,
+    authService
+};

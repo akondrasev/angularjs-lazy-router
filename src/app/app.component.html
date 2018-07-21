@@ -7,12 +7,16 @@
             md-no-ink-bar="disableInkBar"
             md-selected-nav-item="$root.currentState"
             nav-bar-aria-label="navigation links">
-        <md-nav-item ng-repeat="route in $root.routes" md-nav-sref="{{route.name}}" name="{{route.name}}">
-            {{route.name}}
+        <md-nav-item md-nav-sref="root.home" name="root.home">
+            Home
+        </md-nav-item>
+
+        <md-nav-item md-nav-sref="root.about" name="root.about">
+            About
         </md-nav-item>
     </md-nav-bar>
 
-    <md-button ng-if="$root.userData" class="md-primary md-raised" ng-click="$ctrl.logout();">Logout</md-button>
+    <md-button class="md-primary md-raised" ng-click="$ctrl.logout();">Logout</md-button>
 
     <ui-view></ui-view>
 </div>

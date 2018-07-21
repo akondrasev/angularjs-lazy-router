@@ -12,8 +12,7 @@ ngModule.component("appComponent", {
         this.logout = function () {
             $rootScope.loading = true;
             authService.logout().then(() => {
-                $rootScope.userData = null;
-                $state.go("root.login");
+                $state.go("login");
             }).finally(() => {
                 $rootScope.loading = false;
             });

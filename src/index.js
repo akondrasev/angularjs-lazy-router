@@ -10,13 +10,15 @@ import("./vendor").then((vendor) => {
     const uiRouter = vendor.uiRouter;
     const angularAnimate = vendor.angularAnimate;
     const angularAria = vendor.angularAria;
+    const authService = vendor.authService;
 
     const ngModule = angular.module("app", [
         angularMaterial,
         angularMessages,
         uiRouter,
         angularAnimate,
-        angularAria
+        angularAria,
+        authService
     ]);
 
     ngModule.config(["$mdThemingProvider", "$compileProvider", "$stateProvider", "$urlRouterProvider", function ($mdThemingProvider, $compileProvider, $stateProvider, $urlRouterProvider) {
@@ -35,26 +37,21 @@ import("./vendor").then((vendor) => {
         $urlRouterProvider.otherwise("/error");
     }]);
 
-    ngModule.run(["$transitions", "$rootScope", function ($transitions, $rootScope) {
-        $rootScope.routes = [];
-
-        Object.keys(routes).forEach((key) => {
-            $rootScope.routes.push(routes[key]);
-        });
-
-        $transitions.onBefore({}, function ($transition) {
-            if ($transition.$to().name !== "root.login" && !$transition.$to().isSafe && !$rootScope.userData) {
+    ngModule.run(["$transitions", "$rootScope", "authService", function ($transitions, $rootScope, authService) {
+        $transitions.onBefore({to: "root.*"}, function ($transition) {
+            if (!authService.getUserData()) {
                 $rootScope.currentState = $transition.$from().name;
                 $rootScope.loading = false;
-                $transition.router.stateService.transitionTo("root.login");
+                $transition.router.stateService.transitionTo("login");
                 return false;
             }
         });
 
-        $transitions.onBefore({ to : "root.login"}, function ($transition) {
-            if ($rootScope.userData) {
+        $transitions.onBefore({ to : "login"}, function ($transition) {
+            if (authService.getUserData()) {
                 $rootScope.currentState = $transition.$from().name;
                 $rootScope.loading = false;
+                $transition.router.stateService.transitionTo("root.home");
                 return false;
             }
         });

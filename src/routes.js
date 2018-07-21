@@ -3,6 +3,7 @@ export default {
         name: "root",
         url: "/",
         component: "appComponent",
+        abstract: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
                 import("./app/app.component").then((module) => {
@@ -14,8 +15,8 @@ export default {
     },
 
     login: {
-        name: "root.login",
-        url: "login",
+        name: "login",
+        url: "/login",
         component: "loginComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
@@ -28,10 +29,9 @@ export default {
     },
 
     error: {
-        name: "root.error",
-        url: "error",
+        name: "error",
+        url: "/error",
         component: "errorComponent",
-        isSafe: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
                 import("./app/components/error.component/error.component").then((module) => {
@@ -49,6 +49,20 @@ export default {
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
                 import("./app/components/home.component/home.component").then((module) => {
+                    transition.injector().native.loadNewModules([module.default]);
+                    resolve();
+                });
+            });
+        }
+    },
+
+    about: {
+        name: "root.about",
+        url: "about",
+        component: "aboutComponent",
+        lazyLoad: function(transition, state) {
+            return new Promise(function (resolve) {
+                import("./app/components/about.component/about.component").then((module) => {
                     transition.injector().native.loadNewModules([module.default]);
                     resolve();
                 });

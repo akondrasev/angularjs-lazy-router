@@ -2,11 +2,16 @@ import angular from 'angular';
 
 const ngModule = angular.module("authServiceModule", []);
 
-AuthService.$inject = ["$timeout", "$q"];
+AuthService.$inject = ["$timeout", "$q", "$rootScope"];
 
-function AuthService($timeout, $q) {
+function AuthService($timeout, $q, $rootScope) {
+    const localStorageKey = "userData";
 
-    let userData = null;
+    let userData = JSON.parse(localStorage.getItem(localStorageKey)) || null;
+
+    this.getUserData = function () {
+        return userData;
+    };
 
     this.login = function (email, password) {
         return $q((resolve, reject) => {
@@ -18,6 +23,7 @@ function AuthService($timeout, $q) {
                     role: "admin"
                 };
 
+                localStorage.setItem(localStorageKey, JSON.stringify(userData));
                 resolve(userData);
             }, 500);
         });
@@ -26,6 +32,7 @@ function AuthService($timeout, $q) {
     this.logout = function () {
         return $q((resolve, reject) => {
             $timeout(() => {
+                localStorage.removeItem(localStorageKey);
                 userData = null;
                 resolve();
             }, 500);

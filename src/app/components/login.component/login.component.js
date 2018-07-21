@@ -2,7 +2,9 @@ import angular from 'angular';
 import template from './login.component.html';
 import './login.component.css';
 
-const ngModule = angular.module("loginComponent", []);
+import authService from './../../services/auth.service'
+
+const ngModule = angular.module("loginComponent", [authService]);
 
 ngModule.component("loginComponent", {
     template,
@@ -11,9 +13,8 @@ ngModule.component("loginComponent", {
             $rootScope.loading = true;
 
             authService.login(username, password).then((userData) => {
-                $rootScope.userData = userData;
                 $rootScope.loading = false;
-                $state.go("root");
+                $state.go("root.home");
             }, (error) => {
                 console.log(error);
             });
