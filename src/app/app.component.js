@@ -9,6 +9,18 @@ const ngModule = angular.module("appComponent", [services]);
 ngModule.component("appComponent", {
     template,
     controller: ["authService", "$rootScope", "$state", function (authService, $rootScope, $state) {
+        this.openModule = function (route) {
+            const duplicate = $rootScope.openedModules.find((_route) => {
+                return _route.name === route.name;
+            });
+
+            if (!duplicate) {
+                $rootScope.openedModules.push(route);
+            }
+
+            $state.go(route.name);
+        };
+
         this.logout = function () {
             $rootScope.loading = true;
             authService.logout().then(() => {

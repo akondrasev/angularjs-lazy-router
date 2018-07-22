@@ -2,3 +2,82 @@
     position: absolute;
     width: 100%;
 }
+
+.app .left-menu {
+    max-width: 100px;
+    background: #477099;
+    border-right: 1px solid #335A85;
+    color: white;
+}
+
+.left-menu > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.left-menu > ul > li {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    justify-content: center;
+    border-bottom: 1px solid #6589B3;
+    height: 75px;
+    cursor: pointer;
+
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.left-menu > ul > li:hover {
+    background-color: #5C7FA5;
+}
+
+.left-menu > ul > li.active {
+    background-color: #3F6387;
+}
+
+.left-menu > ul > li > i {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.left-menu > .sub-menu {
+    border: 1px solid #476A8F;
+    border-left: 0;
+
+    background-color: #5C7FA5;
+    width: 250px;
+    height: 600px;
+
+    position: absolute;
+    top: 0;
+    left: 100px;
+
+    padding: 25px;
+    color: white;
+}
+
+.left-menu > .sub-menu ul > li > a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.left-menu > .sub-menu ul > li > a:hover {
+    color: #ABCAF1;
+}
+
+.left-menu > .sub-menu h4 {
+    color: #ABCAF1;
+    margin-bottom: 25px;
+    font-weight: 100;
+}
+
+.left-menu > .sub-menu > .menu-block > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

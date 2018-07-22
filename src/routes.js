@@ -1,7 +1,8 @@
-export default {
-    root: {
+export default [
+    {
         name: "root",
         url: "/",
+        showInMenu: true,
         component: "appComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
@@ -13,7 +14,7 @@ export default {
         }
     },
 
-    login: {
+    {
         name: "login",
         url: "/login",
         component: "loginComponent",
@@ -27,7 +28,7 @@ export default {
         }
     },
 
-    error: {
+    {
         name: "error",
         url: "/error",
         component: "errorComponent",
@@ -41,10 +42,11 @@ export default {
         }
     },
 
-    home: {
+    {
         name: "root.home",
         url: "home",
         component: "homeComponent",
+        showInMenu: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
                 import("./app/components/home.component/home.component").then((module) => {
@@ -55,10 +57,11 @@ export default {
         }
     },
 
-    about: {
+    {
         name: "root.about",
         url: "about",
         component: "aboutComponent",
+        showInMenu: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
                 import("./app/components/about.component/about.component").then((module) => {
@@ -68,4 +71,4 @@ export default {
             });
         }
     }
-}
+]

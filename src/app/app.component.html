@@ -3,28 +3,41 @@
         <md-progress-linear md-mode="query"></md-progress-linear>
     </div>
 
-    <md-nav-bar
-            md-selected-nav-item="$root.currentState"
-            nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-sref="root" name="root">
-            Root
-        </md-nav-item>
+    <div layout="row" layout-fill>
+        <div flex class="left-menu">
+            <ul>
+                <li ng-repeat="route in $root.routes track by route.name"
+                    ng-if="route.showInMenu"
+                    ng-click="$ctrl.openModule(route);">
+                    {{route.name}}
+                </li>
+            </ul>
+        </div>
 
-        <md-nav-item md-nav-sref="root.home" name="root.home">
-            Home
-        </md-nav-item>
+        <div flex>
+            <md-nav-bar
+                    md-selected-nav-item="$root.currentState"
+                    nav-bar-aria-label="navigation links">
 
-        <md-nav-item md-nav-sref="root.about" name="root.about">
-            About
-        </md-nav-item>
-    </md-nav-bar>
+                <md-nav-item ng-repeat="module in $root.openedModules" md-nav-sref="{{module.name}}" name="{{module.name}}">
+                    {{module.name}}
+                </md-nav-item>
+            </md-nav-bar>
 
-    <md-button class="md-primary md-raised" ng-click="$ctrl.logout();">Logout</md-button>
-    <md-button class="md-primary md-hue-1 md-raised" ng-click="$ctrl.logout();">Logout</md-button>
-    <md-button class="md-primary md-hue-2 md-raised" ng-click="$ctrl.logout();">Logout</md-button>
+            <md-button class="md-primary md-raised" ng-click="$ctrl.logout();">Logout</md-button>
+            <md-button class="md-primary md-hue-1 md-raised" ng-click="$ctrl.logout();">Logout</md-button>
+            <md-button class="md-primary md-hue-2 md-raised" ng-click="$ctrl.logout();">Logout</md-button>
 
-    <md-icon><i class="material-icons">face</i></md-icon>
+            <md-icon><i class="material-icons">face</i></md-icon>
+
+            <ui-view></ui-view>
+        </div>
+    </div>
 
 
-    <ui-view></ui-view>
+
+
+
+
+
 </div>

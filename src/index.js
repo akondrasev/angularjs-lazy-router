@@ -32,8 +32,7 @@ import("./vendor").then((vendor) => {
 
         $compileProvider.debugInfoEnabled(false);
 
-        Object.keys(routes).forEach(function (key) {
-            let route = routes[key];
+        routes.forEach(function (route) {
             $stateProvider.state(route);
         });
 
@@ -47,6 +46,9 @@ import("./vendor").then((vendor) => {
     }]);
 
     ngModule.run(["$transitions", "$rootScope", "authService", function ($transitions, $rootScope, authService) {
+        $rootScope.routes = routes;
+        $rootScope.openedModules = [];
+
         Object.defineProperty($rootScope, "loading", {
             get: function () {
                 return loadingState;
@@ -95,9 +97,18 @@ import("./vendor").then((vendor) => {
             $transition.promise.finally(() => {
                 $rootScope.loading = false;
             }).catch((data) => {
-                console.log("transition error: ", data);
+                // console.log("transition error: ", data);
             }).then(() => {
-                $rootScope.currentState = $transition.$to().name;
+                const to = $transition.$to();
+                $rootScope.currentState = to.name;
+
+                const duplicate = $rootScope.openedModules.find((_route) => {
+                    return _route.name === to.name;
+                });
+
+                if (to.showInMenu && !duplicate) {
+                    $rootScope.openedModules.push(to);
+                }
             });
         });
 
