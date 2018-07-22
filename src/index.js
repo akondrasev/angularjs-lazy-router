@@ -61,7 +61,7 @@ import("./vendor").then((vendor) => {
             }
         });
 
-        $transitions.onBefore({to: "root.*"}, function ($transition) {
+        $transitions.onBefore({to: "root.**"}, function ($transition) {
             if (!authService.getUserData()) {
                 $rootScope.currentState = $transition.$from().name;
                 $rootScope.loading = false;

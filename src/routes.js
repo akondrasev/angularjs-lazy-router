@@ -3,7 +3,6 @@ export default {
         name: "root",
         url: "/",
         component: "appComponent",
-        abstract: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
                 import("./app/app.component").then((module) => {
