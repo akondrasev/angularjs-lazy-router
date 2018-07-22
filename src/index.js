@@ -37,7 +37,13 @@ import("./vendor").then((vendor) => {
             $stateProvider.state(route);
         });
 
-        $urlRouterProvider.otherwise("/error");
+        $urlRouterProvider.otherwise(function (injector, locationService) {
+            if (locationService.hash() === "") {
+                return "/";
+            } else {
+                return "/error";
+            }
+        });
     }]);
 
     ngModule.run(["$transitions", "$rootScope", "authService", function ($transitions, $rootScope, authService) {
