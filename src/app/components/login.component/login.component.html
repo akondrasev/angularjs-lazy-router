@@ -1,7 +1,7 @@
 <div class="login" layout-fill layout="column" layout-align="center center" ng-cloak>
     <md-content layout-padding class="md-whiteframe-z1 login-box">
         <div class="loading" ng-if="$root.loading">
-            <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+            <md-progress-linear md-mode="query"></md-progress-linear>
         </div>
 
         <form name="loginForm" ng-submit="$ctrl.submit($ctrl.email, $ctrl.password);">
