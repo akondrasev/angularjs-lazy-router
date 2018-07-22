@@ -1,8 +1,4 @@
 <div class="app" layout-fill>
-    <div class="loading" ng-if="$root.loading">
-        <md-progress-linear md-mode="query"></md-progress-linear>
-    </div>
-
     <div layout="row" layout-fill>
         <div flex class="left-menu">
             <ul>
@@ -14,12 +10,18 @@
             </ul>
         </div>
 
-        <div flex>
+        <div flex class="content">
+            <div class="loading" ng-if="$root.loading">
+                <md-progress-linear md-mode="query"></md-progress-linear>
+            </div>
+
             <md-nav-bar
                     md-selected-nav-item="$root.currentState"
                     nav-bar-aria-label="navigation links">
 
-                <md-nav-item ng-repeat="module in $root.openedModules" md-nav-sref="{{module.name}}" name="{{module.name}}">
+                <md-nav-item ng-repeat="module in $root.openedModules"
+                             md-nav-sref="{{module.name}}"
+                             name="{{module.name}}">
                     {{module.name}}
                 </md-nav-item>
             </md-nav-bar>
@@ -30,14 +32,10 @@
 
             <md-icon><i class="material-icons">face</i></md-icon>
 
-            <ui-view></ui-view>
+            <div layout-padding>
+                <ui-view></ui-view>
+            </div>
         </div>
     </div>
-
-
-
-
-
-
 
 </div>

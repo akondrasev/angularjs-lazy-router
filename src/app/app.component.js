@@ -24,6 +24,7 @@ ngModule.component("appComponent", {
         this.logout = function () {
             $rootScope.loading = true;
             authService.logout().then(() => {
+                $rootScope.openedModules.length = 0;
                 $state.go("login");
             }).finally(() => {
                 $rootScope.loading = false;

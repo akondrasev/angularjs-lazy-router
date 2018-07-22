@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+.app .content {
+    position: relative;
+}
+
 .app .left-menu {
     max-width: 100px;
     background: #477099;
