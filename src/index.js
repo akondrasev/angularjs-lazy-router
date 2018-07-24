@@ -11,6 +11,7 @@ import("./vendor").then((vendor) => {
     const angularAnimate = vendor.angularAnimate;
     const angularAria = vendor.angularAria;
     const authService = vendor.authService;
+    const StickyStatesPlugin = vendor.StickyStatesPlugin;
 
     let loadingState = false;
     let loadingCounter = 0;
@@ -21,10 +22,13 @@ import("./vendor").then((vendor) => {
         uiRouter,
         angularAnimate,
         angularAria,
-        authService
+        authService,
+
+        // stickyRouter
     ]);
 
-    ngModule.config(["$mdThemingProvider", "$compileProvider", "$stateProvider", "$urlRouterProvider", function ($mdThemingProvider, $compileProvider, $stateProvider, $urlRouterProvider) {
+    ngConfig.$inject = ["$mdThemingProvider", "$compileProvider", "$stateProvider", "$urlRouterProvider", "$uiRouterProvider"];
+    function ngConfig ($mdThemingProvider, $compileProvider, $stateProvider, $urlRouterProvider, $uiRouterProvider) {
         $mdThemingProvider
             .theme('default')
             .primaryPalette('blue-grey')
@@ -43,7 +47,11 @@ import("./vendor").then((vendor) => {
                 return "/error";
             }
         });
-    }]);
+
+        $uiRouterProvider.plugin(StickyStatesPlugin);
+    }
+
+    ngModule.config(ngConfig);
 
     ngModule.run(["$transitions", "$rootScope", "authService", function ($transitions, $rootScope, authService) {
         $rootScope.routes = routes;

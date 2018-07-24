@@ -5,6 +5,7 @@ import angularAnimate from 'angular-animate';
 import angularAria from 'angular-aria';
 import uiRouter from '@uirouter/angularjs';
 import authService from './app/services/auth.service';
+import {StickyStatesPlugin} from '@uirouter/sticky-states';
 
 import 'angular-material/angular-material.css';
 import 'roboto-fontface/css/roboto/roboto-fontface.css';
@@ -17,5 +18,7 @@ export {
     uiRouter,
     angularAnimate,
     angularAria,
-    authService
+    authService,
+
+    StickyStatesPlugin
 };
