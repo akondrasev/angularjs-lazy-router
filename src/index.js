@@ -101,9 +101,11 @@ import("./vendor").then((vendor) => {
             }
 
             $rootScope.loading = true;
+            bodyElement.classList.add("loading");
 
             $transition.promise.finally(() => {
                 $rootScope.loading = false;
+                bodyElement.classList.remove("loading");
             }).catch((data) => {
                 // console.log("transition error: ", data);
             }).then(() => {

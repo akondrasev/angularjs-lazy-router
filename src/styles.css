@@ -1,10 +1,27 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
 body.loading {
-    background: #403c3c;
     pointer-events: none;
 }
 
-body.loading *:not(.lds-dual-ring) {
+body.loading *:not(.lds-dual-ring, .loading-backdrop) {
     opacity: 0.1;
+}
+
+body.loading .loading-backdrop {
+    background: #403c3c;
+    height: 100%;
+    display: block;
+}
+
+body .loading-backdrop {
+    display: none;
 }
 
 body.loading .lds-dual-ring {
