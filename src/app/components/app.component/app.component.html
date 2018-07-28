@@ -33,7 +33,9 @@
             <md-icon><i class="material-icons">face</i></md-icon>
 
             <div layout-padding>
-                <ui-view></ui-view>
+                <ui-view ng-show="$root.$state.includes('rootState.app.home')" name="rootState.app.home"></ui-view>
+
+                <ui-view ng-show="$root.$state.includes('rootState.app.about')" name="rootState.app.about"></ui-view>
             </div>
         </div>
     </div>

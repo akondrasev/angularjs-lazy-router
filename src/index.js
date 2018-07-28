@@ -27,8 +27,19 @@ import("./vendor").then((vendor) => {
         // stickyRouter
     ]);
 
-    ngConfig.$inject = ["$mdThemingProvider", "$compileProvider", "$stateProvider", "$urlRouterProvider", "$uiRouterProvider"];
-    function ngConfig ($mdThemingProvider, $compileProvider, $stateProvider, $urlRouterProvider, $uiRouterProvider) {
+    ngConfig.$inject = [
+        "$mdThemingProvider",
+        "$compileProvider",
+        "$stateProvider",
+        "$urlRouterProvider",
+        "$uiRouterProvider"
+    ];
+
+    function ngConfig($mdThemingProvider,
+                      $compileProvider,
+                      $stateProvider,
+                      $urlRouterProvider,
+                      $uiRouterProvider) {
         $mdThemingProvider
             .theme('default')
             .primaryPalette('blue-grey')
@@ -36,7 +47,7 @@ import("./vendor").then((vendor) => {
 
         $compileProvider.debugInfoEnabled(false);
 
-        routes.forEach(function (route) {
+        routes.forEach(function (route, i) {
             $stateProvider.state(route);
         });
 
@@ -53,9 +64,11 @@ import("./vendor").then((vendor) => {
 
     ngModule.config(ngConfig);
 
-    ngModule.run(["$transitions", "$rootScope", "authService", function ($transitions, $rootScope, authService) {
+    ngModule.run(["$transitions", "$rootScope", "authService", "$state", function ($transitions, $rootScope, authService, $state) {
         $rootScope.routes = routes;
         $rootScope.openedModules = [];
+
+        $rootScope.$state = $state;
 
         Object.defineProperty($rootScope, "loading", {
             get: function () {
@@ -86,7 +99,7 @@ import("./vendor").then((vendor) => {
             }
         });
 
-        $transitions.onBefore({ to : "login"}, function ($transition) {
+        $transitions.onBefore({to: "login"}, function ($transition) {
             if (authService.getUserData()) {
                 $rootScope.currentState = $transition.$from().name;
                 $rootScope.loading = false;
@@ -121,8 +134,6 @@ import("./vendor").then((vendor) => {
                 }
             });
         });
-
-        bodyElement.classList.remove("loading");
     }]);
 
     const injector = angular.bootstrap(document, [ngModule.name]);

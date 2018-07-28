@@ -1,12 +1,11 @@
 export default [
     {
-        name: "root",
-        url: "/",
-        showInMenu: true,
+        name: "rootState.app",
+        url: "app",
         component: "appComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
-                import("./app/app.component").then((module) => {
+                import("./app/components/app.component/app.component").then((module) => {
                     transition.injector().native.loadNewModules([module.default]);
                     resolve();
                 });
@@ -15,8 +14,8 @@ export default [
     },
 
     {
-        name: "login",
-        url: "/login",
+        name: "rootState.login",
+        url: "login",
         component: "loginComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
@@ -29,8 +28,8 @@ export default [
     },
 
     {
-        name: "error",
-        url: "/error",
+        name: "rootState.error",
+        url: "error",
         component: "errorComponent",
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
@@ -43,9 +42,9 @@ export default [
     },
 
     {
-        name: "root.home",
-        url: "home",
-        component: "homeComponent",
+        name: "rootState.app.home",
+        url: "/home",
+        sticky: true,
         showInMenu: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
@@ -54,14 +53,19 @@ export default [
                     resolve();
                 });
             });
+        },
+        views: {
+            home: {
+                component: "homeComponent"
+            }
         }
     },
 
     {
-        name: "root.about",
-        url: "about",
-        component: "aboutComponent",
+        name: "rootState.app.about",
+        url: "/about",
         showInMenu: true,
+        sticky: true,
         lazyLoad: function(transition, state) {
             return new Promise(function (resolve) {
                 import("./app/components/about.component/about.component").then((module) => {
@@ -69,6 +73,30 @@ export default [
                     resolve();
                 });
             });
+        },
+        views: {
+            about: {
+                component: "aboutComponent"
+            }
+        }
+    },
+
+    {
+        name: "rootState",
+        url: "/",
+        sticky: true,
+        lazyLoad: function (transition, state) {
+            return new Promise(function (resolve) {
+                import("./app/components/root.component/root.component").then((module) => {
+                    transition.injector().native.loadNewModules([module.default]);
+                    resolve();
+                });
+            });
+        },
+        views: {
+            root: {
+                component: "rootComponent",
+            }
         }
     }
 ]

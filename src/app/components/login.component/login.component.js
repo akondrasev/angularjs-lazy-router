@@ -14,7 +14,7 @@ ngModule.component("loginComponent", {
 
             authService.login(username, password).then((userData) => {
                 $rootScope.loading = false;
-                $state.go("root.home");
+                $state.go("rootState.app.home");
             }, (error) => {
                 console.log(error);
             });

@@ -2,7 +2,7 @@ import angular from 'angular';
 import template from './app.component.html';
 import './app.component.css';
 
-import services from './services/services';
+import services from './../../services/services';
 
 const ngModule = angular.module("appComponent", [services]);
 
@@ -25,7 +25,7 @@ ngModule.component("appComponent", {
             $rootScope.loading = true;
             authService.logout().then(() => {
                 $rootScope.openedModules.length = 0;
-                $state.go("login");
+                $state.go("rootState.login");
             }).finally(() => {
                 $rootScope.loading = false;
             });
