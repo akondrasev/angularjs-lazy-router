@@ -3,8 +3,9 @@ import angularMaterial from 'angular-material';
 import angularMessages from 'angular-messages';
 import angularAnimate from 'angular-animate';
 import angularAria from 'angular-aria';
-import uiRouter from '@uirouter/angularjs';
+
 import authService from './app/services/auth.service';
+import uiRouter from '@uirouter/angularjs';
 import {StickyStatesPlugin} from '@uirouter/sticky-states';
 
 import 'angular-material/angular-material.css';

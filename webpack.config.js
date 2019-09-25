@@ -8,7 +8,7 @@ module.exports = {
     mode: "development",
     devtool: "source-map",
     // devtool: false,
-    watch: true,
+    // watch: true,
 
     entry: {
         boot: "./src/index"
@@ -44,10 +44,10 @@ module.exports = {
             use: ['style-loader', 'css-loader', 'sass-loader']
         }, {
             test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-            use: ['file-loader']
+            use: ['url-loader']
         }, {
             test: /\.html$/,
-            use: ['raw-loader']
+            use: ['html-loader']
         }]
     },
 
